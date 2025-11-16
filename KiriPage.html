@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    
+    body {
+      cursor: none;
+      margin: 0;
+      font-family: Gill Sans, sans-serif;
+      background-color: #f6f2eb;
+      line-height: .7;
+      color: #111;
+
+    }
+
+    header {
+      cursor: none;
+      padding: 40px 60px;
+      font-size: 2.8rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    header a {
+      text-decoration: none;  /* removes underline */
+      color: inherit;         /* keeps header text color */
+    }
+
+    .container {
+      cursor: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      cursor: none;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    #about {
+      cursor: none;
+      margin-bottom: 0px;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+
+    #projects {
+      cursor: none;
+      margin-bottom: 80px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two equal columns */
+      gap: 20px;
+    }
+
+    .project-card {
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #ddd;
+      min-height: 250px;
+      aspect-ratio: 4 / 3;
+    }
+
+    .project-card img {
+      cursor: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .landscape {
+      aspect-ratio: 4 / 3;
+    }
+
+
+    .portrait {
+      aspect-ratio: 3 / 4;
+    }
+
+
+    #contact {
+      cursor: none;
+      margin-bottom: 100px;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    footer {
+      cursor: none;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Custom Cursor */
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 22px;
+      height: 22px;
+      background: #111;
+      border-radius: 6px;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+
+  </style>
+</head>
+
+<body>
+    <header>
+      <a href="index.html">Kayla Vinh</a>
+    </header>
+  <div class="container">
+
+    <section id="about">
+      <h2 class="section-title"> The KIRI Table</h2>
+      <p>The KIRI Table is an innovative experimentation with recycled plastic materials. This project was part of Gravity Wave’s initiative to reinvent the life cycle of ghost fishing nets by transforming them into plastic panels. The goal was to create a desirable and engaging product that not only serves a functional purpose but also tells a compelling story. By doing so, we aim to raise awareness about plastic pollution in the oceans and its connection to the ongoing climate crisis. (In collaberation with Isabel Sanchez and Isabel Peña)</p>
+    </section>
+
+<section id="Projects">
+  <h2 class="section-title"></h2>
+  <div class="gallery">
+    <div class="project-card portrait"><img src="FinalProjects/Portfolio/KiriTable.jpg" alt="KiriTable"></div>
+    <div class="project-card portrait"><img src="FinalProjects/Portfolio/KiriTable4.jpg" alt="KiriTable3"></div>
+  </div>
+</section>
+
+<section id="about">
+      <p>We were inspired by the idea of taking a stiff and solid object and reincorporating the fluidity and movement from the ocean. The piece uses techniques of Kirigami, the art of cutting and folding paper, to add dimension. Using the CNC and sampling several differnt methods, we were able to create a pattern that shifts from simple to complex with just a few folds. The table uses the entirity of the board, wasting no material.
+</p>
+    </section>
+
+<section id="Projects">
+  <h2 class="section-title"></h2>
+  <div class="gallery">
+    <div class="project-card portrait"><img src="FinalProjects/Portfolio/KiriTable3.jpg" alt="KiriTable2"></div>
+    <div class="project-card portrait"><img src="FinalProjects/Portfolio/KiriTable2.jpg" alt="KiriTable1"></div>
+  </div>
+</section>
+
+<footer>
+  <h2 class="section-title">Contact</h2>
+  <p>kkvinh2@gmail.com</p>
+  <p>www.linkedin.com/in/kayla-vinh</p>
+</footer>
+
+
+  <div id="custom-cursor"></div>
+  <script>
+    const cursor = document.getElementById('custom-cursor');
+    const images = document.querySelectorAll('.gallery img');
+
+    // Cursor follows mouse
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    function createOverlay(img) {
+      const rect = img.getBoundingClientRect();
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('width', rect.width);
+      svg.setAttribute('height', rect.height);
+      svg.style.position = 'absolute';
+      svg.style.left = 0;
+      svg.style.top = 0;
+      svg.style.pointerEvents = 'none';
+
+      const r = 14;
+      const w = rect.width;
+      const h = rect.height;
+
+      const pathData = `M ${r} 0 H ${w-r} A ${r} ${r} 0 0 1 ${w} ${r}
+        V ${h-r} A ${r} ${r} 0 0 1 ${w-r} ${h}
+        H ${r} A ${r} ${r} 0 0 1 0 ${h-r}
+        V ${r} A ${r} ${r} 0 0 1 ${r} 0 Z`;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', pathData);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', '#111');
+      path.setAttribute('stroke-width', '3');
+      path.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)';
+
+      svg.appendChild(path);
+
+      const wrapper = img.parentElement;
+      wrapper.style.position = 'relative';
+      wrapper.appendChild(svg);
+
+      return { svg, path, r, rect };
+    }
+  </script>
+</body>
+</html>
+
